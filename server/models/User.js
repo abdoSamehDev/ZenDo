@@ -28,10 +28,29 @@ class User {
     return new User(result[0]);
   }
 
-  static async getUserData({ id }) {
+  static async getUserById(id) {
     //   let id = googleId || null;
+    console.log("Get user by id func input: ", id);
     const result = await query("SELECT * FROM users WHERE id = $1", [id]);
+    console.log("Get user by id func returning: ", result[0]);
     return new User(result[0]);
+  }
+
+  static async getUserByEmail(email) {
+    //   let id = googleId || null;
+    if (email) {
+      try {
+        console.log(email);
+        const result = await query("SELECT * FROM users WHERE email = $1", [
+          email,
+        ]);
+        console.log("RESULTS: ", result);
+        return new User(result[0]);
+      } catch (e) {
+        console.log("Getting user by email ERROR: " + e.message);
+        return null;
+      }
+    }
   }
 
   static async update({ id, email, password, firstName, lastName }) {

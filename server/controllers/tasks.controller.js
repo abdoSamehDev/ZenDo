@@ -2,7 +2,7 @@ import Task from "../models/Task.js";
 
 export async function createTask(req, res) {
   const { title, description } = req.body;
-  const userId = req.params.id;
+  const userId = req.user.id;
   try {
     const newTask = await Task.create({ title, description, userId });
     res.status(200).send({ message: "Success", newTask });
@@ -24,7 +24,7 @@ export async function updateTask(req, res) {
 }
 
 export async function getAllUserTasks(req, res) {
-  const userId = req.params.id;
+  const userId = req.user.id;
   try {
     const tasks = await Task.findAllUserTasks(userId);
     res.status(200).send({ message: "Success", tasks });

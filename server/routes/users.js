@@ -5,12 +5,13 @@ import {
   deleteUser,
   getUserByEmail,
 } from "../controllers/users.controller.js";
+import checkAuthentication from "../utils/check_auth.js";
 
 const router = express.Router();
 
 router.route("/create").post(createUser);
 router.route("/get-by-email").get(getUserByEmail);
-router.route("/update:id").put(updateUser);
-router.route("/delete:id").get(deleteUser);
+router.route("/update:id").put(checkAuthentication, updateUser);
+router.route("/delete:id").get(checkAuthentication, deleteUser);
 
 export default router;

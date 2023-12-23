@@ -8,6 +8,7 @@ import initializePassport, { store } from "./config/passport.js";
 import passport from "passport";
 import session from "express-session";
 import flash from "express-flash";
+import checkAuthentication from "./utils/check_auth.js";
 
 const app = express();
 initializePassport(passport);
@@ -38,9 +39,13 @@ app.use(passport.session());
 app.use(flash());
 
 // Routes
-app.get("/", (req, res) => {
+app.get("/", checkAuthentication, (req, res) => {
   console.log("REQ USER: ", req.user);
-  res.json({ message: "Welcome to my API" });
+  res.redirect("/tasks/");
+});
+
+app.get("/auth/login", (req, res) => {
+  res.json({ message: "pls login or register" });
 });
 
 app.get("/failure", (req, res) => {

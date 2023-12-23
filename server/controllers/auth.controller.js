@@ -12,6 +12,10 @@ export const localRegister = passport.authenticate("local-register", {
   failureFlash: true,
 });
 
+export const googleAuth = passport.authenticate("google", {
+  scope: ["profile"],
+});
+
 export function logout(req, res) {
   req.logout((err) => {
     if (err) {

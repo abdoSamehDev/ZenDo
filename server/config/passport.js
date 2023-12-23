@@ -1,5 +1,6 @@
 import localLogin from "../passport/local_login.js";
 import localRegister from "../passport/local_register.js";
+import googleLogin from "../passport/google.js";
 import User from "../models/User.js";
 import session from "express-session";
 import PgSession from "connect-pg-simple";
@@ -21,6 +22,7 @@ function initialize(passport) {
 
   passport.use("local-login", localLogin);
   passport.use("local-register", localRegister);
+  passport.use("google", googleLogin);
 
   passport.serializeUser((user, done) => {
     console.log("s", typeof user.id);

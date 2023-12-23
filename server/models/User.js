@@ -53,6 +53,23 @@ class User {
     }
   }
 
+  static async getUserByGoogleId(googleIId) {
+    //   let id = googleId || null;
+    if (googleIId) {
+      try {
+        console.log(googleIId);
+        const result = await query("SELECT * FROM users WHERE google_id = $1", [
+          googleIId,
+        ]);
+        console.log("RESULTS: ", result);
+        return new User(result[0]);
+      } catch (e) {
+        console.log("Getting user by email ERROR: " + e.message);
+        return null;
+      }
+    }
+  }
+
   static async update({ id, email, password, firstName, lastName }) {
     await query(
       "UPDATE users SET email = $1, password = $2, first_name = $3, last_name = $4 WHERE id = $5",

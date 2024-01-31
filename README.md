@@ -55,7 +55,7 @@ npm install
 npm start
 ```
 
-3. Database: This project requires a user-created PostgreSQL database for data storage. Please refer to the PostgreSQL documentation for instructions on setting up a database.
+4. Database: This project requires a user-created PostgreSQL database for data storage. Please refer to the PostgreSQL documentation for instructions on setting up a database.
 
 ## Screenshots
 

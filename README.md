@@ -59,17 +59,17 @@ npm start
 
 ## Screenshots
 
-**Screenshot of ZenDo welcome page:** [![ZenDo Welcome Page](assets/screenshots/welcome.png)]
+**Welcome Page:** ![ZenDo Welcome Page](assets/screenshots/welcome.png)
 
-**Screenshot of ZenDo login:** [![ZenDo Login](assets/screenshots/login.png)]
+**Login Page:** ![ZenDo Login](assets/screenshots/login.png)
 
-**Screenshot of ZenDo register:** [![ZenDo Register](assets/screenshots/register.png)]
+**Register Page:** ![ZenDo Register](assets/screenshots/register.png)
 
-**Screenshot of ZenDo home:** [![ZenDo Home](assets/screenshots/home.png)]
+**Home Page:** ![ZenDo Home](assets/screenshots/home.png)
 
-**Screenshot of ZenDo create task:** [![ZenDo Create Task](assets/screenshots/create.png)]
+**Create Task:** ![ZenDo Create Task](assets/screenshots/create.png)
 
-**Screenshot of ZenDo update task:** [![ZenDo Update Task](assets/screenshots/update.png)]
+**Update Task:** ![ZenDo Update Task](assets/screenshots/update.png)
 
 ## Contact
 

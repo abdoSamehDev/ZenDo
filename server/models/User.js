@@ -70,10 +70,10 @@ class User {
     }
   }
 
-  static async update({ id, email, password, firstName, lastName }) {
+  static async update({ id, email, password, firstName, lastName, googleId }) {
     await query(
-      "UPDATE users SET email = $1, password = $2, first_name = $3, last_name = $4 WHERE id = $5",
-      [email, password, firstName, lastName, id]
+      "UPDATE users SET email = $1, password = $2, first_name = $3, last_name = $4, google_id=$5 WHERE id = $6",
+      [email, password, firstName, lastName, googleId, id]
     );
   }
 

@@ -16,7 +16,7 @@ class Task {
     this.user_id = user_id; // number (foreign key referencing users table)
     this.title = title; // string
     this.description = description || ""; // string | null
-    this.due_date = due_date || null; // Date | null
+    this.due_date = due_date || ""; // Date | null
     this.priority = priority || null; // number (e.g., 1 for high, 2 for medium, 3 for low)
     this.completed = completed || false; // boolean
     this.created_at = created_at; // Date
@@ -24,19 +24,39 @@ class Task {
   }
 
   // Static methods for interacting with the database
-  static async create({ title, description = null, userId }) {
+  static async create({
+    title,
+    description = null,
+    dueDate,
+    priority = 3,
+    userId,
+  }) {
     const result = await query(
-      "INSERT INTO tasks (title, description, user_id) VALUES ($1, $2, $3) RETURNING *",
-      [title, description, userId]
+      "INSERT INTO tasks (title, description, due_date, priority, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      [title, description, dueDate, priority, userId]
     );
     return new Task(result[0]);
   }
 
-  static async update({ id, title, description, completed }) {
+  static async update({
+    id,
+    title,
+    description,
+    dueDate,
+    completed = false,
+    priority,
+  }) {
     await query(
-      "UPDATE tasks SET title = $1, description = $2, completed = $3 WHERE id = $4",
-      [title, description, completed, id]
+      "UPDATE tasks SET title = $1, description = $2, due_date = $3, completed = $4, priority = $5 WHERE id = $6",
+      [title, description, dueDate, completed, priority, id]
     );
+  }
+
+  static async toggleCompleted({ id, completed = false }) {
+    await query("UPDATE tasks SET completed = $1 WHERE id = $2", [
+      !completed,
+      id,
+    ]);
   }
 
   static async findAllUserTasks(userId) {

@@ -11,14 +11,14 @@ const localLogin = new LocalStrategy(
   },
   async (email, password, done) => {
     // Validate email and password
-    console.log("HI! Email and password");
-    console.log(email);
+    // console.log("HI! Email and password");
+    // console.log(email);
     if (!email || !password) {
       console.log("Invalid credentials");
       return done(null, false, { message: "Invalid credentials" });
     }
     // try {
-    console.log("trying to get user by email");
+    // console.log("trying to get user by email");
     const user = await User.getUserByEmail(email);
     console.log("USER: ", user);
 
@@ -29,7 +29,7 @@ const localLogin = new LocalStrategy(
 
     const isPasswordValid = await comparePassword(password, user.password);
 
-    console.log(isPasswordValid);
+    // console.log(isPasswordValid);
 
     if (!isPasswordValid) {
       console.log("Incorrect PW.");

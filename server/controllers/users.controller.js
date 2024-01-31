@@ -41,11 +41,18 @@ export async function getUserByEmail(req, res) {
 }
 
 export async function updateUser(req, res) {
-  const { email, password, completed } = req.body;
-  const id = req.user.id;
+  const { email, password, firstName, lastName, googleId, userId } = req.body;
+  // const id = req.user.id;
   const hashedPassword = await hashPassword(password);
   try {
-    await User.update({ id, email, hashedPassword, completed });
+    await User.update({
+      userId,
+      email,
+      hashedPassword,
+      firstName,
+      lastName,
+      googleId,
+    });
     res.status(200).send({ message: "Success" });
   } catch (error) {
     console.error(error);
@@ -54,7 +61,7 @@ export async function updateUser(req, res) {
 }
 
 export async function deleteUser(req, res) {
-  const id = req.user.id;
+  const id = req.body.userId;
   try {
     await User.deleteUser(id);
     res.status(200).send({ message: "Success" });

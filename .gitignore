@@ -5,7 +5,7 @@ node_modules/
 Thumbs.db
 
 #env file
-.env
+# .env
 
 # Ignore user-specific Yarn configuration
 package-lock.json

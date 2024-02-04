@@ -41,10 +41,8 @@ app.use(passport.session());
 app.use(flash());
 
 // Routes
-app.get("/", checkAuthentication, (req, res) => {
-  console.log("REQ USER: ", req.user);
-  console.log("HI SERVER");
-  res.redirect("/home");
+app.get("/", (req, res) => {
+  res.send("HI SERVER");
 });
 
 app.get("/auth/login", (req, res) => {
